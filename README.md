@@ -123,7 +123,7 @@ for all gauges, first need to set Color Ranges and set min value and max value
 ```
 
 
-## All Speedometers, Gauges :
+
 
 
 
