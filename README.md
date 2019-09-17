@@ -1,4 +1,7 @@
-# Android Simple Gauge Library![GitHub Actions status | HaneetGH/apple-watch-gauge-android](https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
+# Android Simple Gauge[GitHub Actions status | HaneetGH/apple-watch-gauge-android](https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
+
+
+# NOTE:- This isn't a Library
 
 Apple Watch alike gauge for android
 
@@ -9,12 +12,14 @@ Apple Watch alike gauge for android
 
 <a href="https://ibb.co/SP101HD"><img src="https://i.ibb.co/KXQ7QBc/device-2019-09-17-190430.png" width="182" height="286" alt="device-2019-09-17-190430" border="0"></a>
 
+# How to use
+## Download Code and include files in com.technorapper.gauge
 
 ```
 
 
 # Simple Usage
-## Download Code and include files in com.technorapper.gauge
+
 ```xml
 
    <com.technorapper.gauge.MultiGauge
