@@ -1,6 +1,6 @@
 # Android Simple Gauge Library
 
-Simple Gauge for Android. Currently avalible 4 shapes of gauges, you can change (colors of ranges) 
+Apple Watch alike gauge for android
 
 
 
