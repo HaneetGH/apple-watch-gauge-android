@@ -14,35 +14,28 @@
  * limitations under the License.
  *******************************************************************************/
 
-
-package com.ekn.gruzer.simplegaugeexample.ui.gauge
+package com.technorapper
 
 import android.graphics.Color
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import com.ekn.gruzer.gaugelibrary.Range
+import com.technorapper.gauge.Range
 
-import com.ekn.gruzer.simplegaugeexample.R
+
+import com.technorapper.ui.main.MainFragment
 import kotlinx.android.synthetic.main.fragment_multi_gauge.*
 
+class MainActivity : AppCompatActivity() {
 
-class MultiGaugeFragment : Fragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_activity)
+        /*if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, MainFragment.newInstance())
+                    .commitNow()
+        }*/
 
-    companion object {
-        fun newInstance() = MultiGaugeFragment()
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_multi_gauge, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val range = Range()
         range.color = Color.parseColor("#5e8fe1")
@@ -122,19 +115,17 @@ class MultiGaugeFragment : Fragment() {
 
         multiGauge.addRange(range)
         multiGauge.addRange(rangeGrad)
-
+        multiGauge.setFirstString("x")
         multiGauge.addSecondRange(range2)
         multiGauge.addSecondRange(rangeGrad2)
-
+        multiGauge.secondString = "y";
         multiGauge.addThirdRange(range3)
         multiGauge.addThirdRange(rangeGrad3)
-
+        multiGauge.threeString = "z";
         multiGauge.addForthRange(range4)
         multiGauge.addForthRange(rangeGrad4)
+        multiGauge.fourString = "zz";
+
     }
-
-
-
-
 
 }

@@ -1,1 +1,1 @@
-include ':app' , ':gaugelibrary'
+include ':app'

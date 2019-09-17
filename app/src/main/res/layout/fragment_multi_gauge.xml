@@ -16,7 +16,8 @@
         android:layout_width="300dp"
         android:layout_height="300dp">
 
-        <com.ekn.gruzer.gaugelibrary.MultiGauge
+        <com.technorapper.gauge.MultiGauge
+
             android:id="@+id/multiGauge"
             android:layout_width="300dp"
             android:layout_height="292dp"

@@ -1,17 +1,12 @@
-/*******************************************************************************
- * Copyright 2018 Evstafiev Konstantin
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+/*
+ * *
+ *  * Created by Haneet Singh Chhabra on 12/9/19 5:34 PM
+ *  * Copyright (c) 2019 . All rights reserved.
+ *  * Last modified 12/9/19 2:27 PM
+ *
+ */
 
-package com.ekn.gruzer.gaugelibrary;
+package com.technorapper.gauge;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -125,8 +120,8 @@ abstract class AbstractGauge extends View {
             gaugeBackGround.setColor(Color.parseColor("#1a1a1a"));
             gaugeBackGround.setAntiAlias(true);
             gaugeBackGround.setStyle(Paint.Style.STROKE);
-             gaugeBackGround.setShadowLayer(15.0f,0f,5.0f,0X50000000);
-            setLayerType(LAYER_TYPE_SOFTWARE, gaugeBackGround);
+            // gaugeBackGround.setShadowLayer(15.0f,0f,5.0f,0X50000000);
+            // setLayerType(LAYER_TYPE_SOFTWARE, gaugeBackGround);
         }
         return gaugeBackGround;
     }

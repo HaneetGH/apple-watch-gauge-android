@@ -1,18 +1,13 @@
-/*******************************************************************************
- * Copyright 2018 Evstafiev Konstantin
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+/*
+ * *
+ *  * Created by Haneet Singh Chhabra on 12/9/19 5:34 PM
+ *  * Copyright (c) 2019 . All rights reserved.
+ *  * Last modified 12/9/19 5:33 PM
+ *
+ */
 
 
-package com.ekn.gruzer.gaugelibrary;
+package com.technorapper.gauge;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -98,7 +93,7 @@ public class FullGauge extends AbstractGauge {
             //draw Value point indicator
             float rotateValue = calculateSweepAngle(getValue(), getMinValue(), getMaxValue());
             canvas.rotate(rotateValue, getRectRight() / 2f, getRectBottom() / 2f);
-            canvas.drawCircle(400f / 2f, getPadding(), 8f, getRangePaintForValueold(getValue(), getRanges()));
+            canvas.drawCircle(400f / 2f, getPadding(), 8f, getRangePaintForValue(getValue(), getRanges()));
             canvas.drawLine(200f - 3f, 11f, 210f - 4f, 19f, getArrowPaint());
             canvas.drawLine(210f - 4f, 20f, 200f - 3f, 27f, getArrowPaint());
             finishCanvas(canvas);
@@ -147,34 +142,47 @@ public class FullGauge extends AbstractGauge {
         // color.setColor(getRangeColorForValue(value, ranges));
         return color;
     }
-    protected Paint getRangePaintForValueold(double value, List<Range> ranges) {
 
-
-        Paint color = new Paint(Paint.ANTI_ALIAS_FLAG);
-        color.setStrokeWidth(gaugeBGWidth);
-        color.setStyle(Paint.Style.STROKE);
-       // color.setShader(new LinearGradient(0, 0, 0, getHeight(), ranges.get(0).getColor(), ranges.get(1).getColor(), Shader.TileMode.CLAMP));
-
-        color.setColor(getGaugeBackGround().getColor());
-        color.setStrokeCap(Paint.Cap.ROUND);
-         color.setColor(getRangeColorForValue(value, ranges));
-        return color;
-    }
     private void drawValueArcOnCanvas(Canvas canvas) {
         float sweepAngle = calculateSweepAngle(getValue(), getMinValue(), getMaxValue());
-        drawValueArcOnCanvas(canvas, getRectF(),getStartAngle(), sweepAngle,getValue(),getRanges());
+        drawValueArcOnCanvas(canvas, getRectF(), getStartAngle(), sweepAngle, getValue(), 10, 178, MultiGauge.getFirstString(), getRanges());
     }
 
 
-
-    protected void drawValueArcOnCanvas(Canvas canvas, RectF rectF,float startAngle, float sweepAngle,double value,List<Range> ranges) {
+    protected void drawValueArcOnCanvas(Canvas canvas, RectF rectF, float startAngle, float sweepAngle, double value, int x, int y, String text, List<Range> ranges) {
         prepareCanvas(canvas);
-        canvas.drawArc(rectF, startAngle, sweepAngle, false, getRangePaintForValue(value,ranges));
+        Path mArc = new Path();
+        mArc.addArc(rectF, startAngle, sweepAngle);
+        //mArc.arcTo(rectF,startAngle,sweepAngle);
+        //  mArc.addRect(rectF, Path.Direction.CCW);
+
+        canvas.drawArc(rectF, startAngle, sweepAngle, false, getRangePaintForValue(value, ranges));
+
+        Paint titlePaint = new Paint();
+
+        titlePaint.setColor(Color.parseColor("#ffffff"));
+        titlePaint.setAntiAlias(true);
+        titlePaint.setTypeface(Typeface.MONOSPACE);
+
+        titlePaint.setTextAlign(Paint.Align.CENTER);
+        titlePaint.setTextSize(9f);
+
+        int centerX = (int) (rectF.left + rectF.right) / 2;
+        int centerY = (int) (rectF.top + rectF.bottom) / 2;
+        int radius = (int) (rectF.right - rectF.left) / 2;
+        int mTextWidth = Math.round(titlePaint.measureText("test".toString()));
+
+        float cx = getWidth() / 2f;
+        float cy = getHeight() / 2f;
+        // canvas.drawTextOnPath("test", mArc , 0, 20, titlePaint);
+        canvas.drawText(text, rectF.centerX() + x, rectF.centerY() - y, titlePaint);
+
+
         finishCanvas(canvas);
     }
 
-    protected float calculateSweepAngle(double to,double min, double max) {
-        float valuePer = getCalculateValuePercentage(min,max,to);
+    protected float calculateSweepAngle(double to, double min, double max) {
+        float valuePer = getCalculateValuePercentage(min, max, to);
         return sweepAngle / 100 * valuePer;
     }
 

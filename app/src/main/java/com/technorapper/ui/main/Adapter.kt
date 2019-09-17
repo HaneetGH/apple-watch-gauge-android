@@ -15,14 +15,13 @@
  *******************************************************************************/
 
 
-package com.ekn.gruzer.simplegaugeexample.ui.main
+package com.technorapper.ui.main
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.ekn.gruzer.simplegaugeexample.ui.gauge.FullGauge
 
-import com.ekn.gruzer.simplegaugeexample.ui.gauge.MultiGaugeFragment
+import com.technorapper.ui.gauge.MultiGaugeFragment
 
 class Adapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 

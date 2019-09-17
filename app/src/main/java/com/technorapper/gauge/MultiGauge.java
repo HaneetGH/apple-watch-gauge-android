@@ -1,18 +1,13 @@
-/*******************************************************************************
- * Copyright 2018 Evstafiev Konstantin
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
+/*
+ * *
+ *  * Created by Haneet Singh Chhabra on 12/9/19 5:34 PM
+ *  * Copyright (c) 2019 . All rights reserved.
+ *  * Last modified 12/9/19 2:47 PM
+ *
+ */
 
 
-package com.ekn.gruzer.gaugelibrary;
+package com.technorapper.gauge;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -20,13 +15,18 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultiGauge extends FullGauge {
 
-    private float distance = 30f;
+    private static String firstString;
+    private String secondString;
+    private String threeString;
+    private String fourString;
+    private float distance = 25f;
     private float gaugeBGWidth = 20f;
     private double secondValue = 0;
     private double thirdValue = 0;
@@ -36,11 +36,38 @@ public class MultiGauge extends FullGauge {
     private double secondMaxValue = 100;
     private double thirdMaxValue = 100;
 
-    private double forthMaxValue = 100;
-    private double forthMinValue = 0;
+    public static String getFirstString() {
+        return firstString;
+    }
 
-    private List<Range> secondRanges = new ArrayList<>();
-    private List<Range> thirdRanges = new ArrayList<>();
+    public void setFirstString(String firstString) {
+        MultiGauge.firstString = firstString;
+    }
+
+    public String getSecondString() {
+        return secondString;
+    }
+
+    public void setSecondString(String secondString) {
+        this.secondString = secondString;
+    }
+
+    public String getThreeString() {
+        return threeString;
+    }
+
+    public void setThreeString(String threeString) {
+        this.threeString = threeString;
+    }
+
+    public String getFourString() {
+        return fourString;
+    }
+
+    public void setFourString(String fourString) {
+        this.fourString = fourString;
+    }
+
 
     public double getForthValue() {
         return forthValue;
@@ -48,7 +75,6 @@ public class MultiGauge extends FullGauge {
 
     public void setForthValue(double forthValue) {
         this.forthValue = forthValue;
-        invalidate();
     }
 
 
@@ -68,6 +94,11 @@ public class MultiGauge extends FullGauge {
         this.forthMinValue = forthMinValue;
     }
 
+    private double forthMaxValue = 100;
+    private double forthMinValue = 0;
+
+    private List<Range> secondRanges = new ArrayList<>();
+    private List<Range> thirdRanges = new ArrayList<>();
 
     public List<Range> getFourthRanges() {
         return fourthRanges;
@@ -113,6 +144,7 @@ public class MultiGauge extends FullGauge {
     }
 
     public void init() {
+
         getGaugeBackGround().setStrokeWidth(gaugeBGWidth);
         getGaugeBackGround().setColor(Color.parseColor("#ff1a1a1a"));
         getTextPaint().setTextSize(35f);
@@ -125,25 +157,24 @@ public class MultiGauge extends FullGauge {
         super.onDraw(canvas);
 
         //Draw Base Arc's
+        if (getRanges() != null) {
+            drawBaseArc(canvas, getSecondRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getSecondValue()));
+            drawBaseArc(canvas, getThirdRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getThirdValue()));
+            drawBaseArc(canvas, getForthRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getForthValue()));
 
+            //Draw Value Arc's
+            drawValueArcOnCanvas(canvas, getSecondRect(), getStartAngle(),
+                    calculateSweepAngle(getSecondValue(), getSecondMinValue(), getSecondMaxValue()),
+                    getSecondValue(), 10, 153, getSecondString(), getSecondRanges());
 
-        drawBaseArc(canvas, getSecondRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getSecondValue()));
-        drawBaseArc(canvas, getThirdRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getThirdValue()));
-        drawBaseArc(canvas, getForthRect(), getStartAngle(), getSweepAngle(), getGaugeBackGround(getForthValue()));
+            drawValueArcOnCanvas(canvas, getThirdRect(), getStartAngle(),
+                    calculateSweepAngle(getThirdValue(), getThirdMinValue(), getThirdMaxValue()),
+                    getThirdValue(), 10, 128, getThreeString(), getThirdRanges());
 
-
-        //Draw Value Arc's
-        drawValueArcOnCanvas(canvas, getSecondRect(), getStartAngle(),
-                calculateSweepAngle(getSecondValue(), getSecondMinValue(), getSecondMaxValue()),
-                getSecondValue(), getSecondRanges());
-
-        drawValueArcOnCanvas(canvas, getThirdRect(), getStartAngle(),
-                calculateSweepAngle(getThirdValue(), getThirdMinValue(), getThirdMaxValue()),
-                getThirdValue(), getThirdRanges());
-
-        drawValueArcOnCanvas(canvas, getForthRect(), getStartAngle(),
-                calculateSweepAngle(getForthValue(), getForthMinValue(), getForthMaxValue()),
-                getForthValue(), getFourthRanges());
+            drawValueArcOnCanvas(canvas, getForthRect(), getStartAngle(),
+                    calculateSweepAngle(getForthValue(), getForthMinValue(), getForthMaxValue()),
+                    getForthValue(), 10, 103, getFourString(), getFourthRanges());
+        }
 
 
     }
@@ -244,4 +275,30 @@ public class MultiGauge extends FullGauge {
     public void setThirdRanges(List<Range> thirdRanges) {
         this.thirdRanges = thirdRanges;
     }
+
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
+
+
+    private void isPointInCircle(View view, int clickX, int clickY, RectF rectF) {
+        double radius = Math.sqrt(callsqure((clickX - getHeight())) + +callsqure(((clickY - getWidth()))));
+
+        if (radius > 169 && radius < 181) {
+
+
+        } else if (radius == 155) {
+
+
+        }
+
+    }
+
+    public int callsqure(int num) {
+        return num * num;
+    }
+
+
 }
