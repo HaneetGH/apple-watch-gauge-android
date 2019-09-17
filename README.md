@@ -14,7 +14,7 @@ Apple Watch alike gauge for android
 
 
 # Simple Usage
-
+## Download Code and include files in com.technorapper.gauge
 ```xml
 
    <com.technorapper.gauge.MultiGauge
