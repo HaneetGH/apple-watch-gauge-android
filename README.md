@@ -13,7 +13,7 @@ Apple Watch alike gauge for android
 <a href="https://ibb.co/SP101HD"><img src="https://i.ibb.co/KXQ7QBc/device-2019-09-17-190430.png" width="182" height="286" alt="device-2019-09-17-190430" border="0"></a>
 
 # How to use
-## Download Code and include files in com.technorapper.gauge
+## Download Code and include files from com.technorapper.gauge
 
 ```
 
