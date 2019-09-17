@@ -7,8 +7,7 @@ Apple Watch alike gauge for android
 **Gauges...*
 
 
-<a href="https://ibb.co/f9WPQrP"><img src="https://i.ibb.co/NrqH7WH/device-2019-09-17-173248.png" width="182" height="286" alt="device-2019-09-17-173248" border="0"></a>
-
+<a href="https://ibb.co/SP101HD"><img src="https://i.ibb.co/KXQ7QBc/device-2019-09-17-190430.png" width="182" height="286" alt="device-2019-09-17-190430" border="0"></a>
 
 
 ```

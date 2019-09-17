@@ -1,10 +1,3 @@
-/*
- * *
- *  * Created by Haneet Singh Chhabra on 12/9/19 5:34 PM
- *  * Copyright (c) 2019 . All rights reserved.
- *  * Last modified 12/9/19 5:33 PM
- *
- */
 
 
 package com.technorapper.gauge;
