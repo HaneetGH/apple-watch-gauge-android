@@ -1,4 +1,4 @@
-# Android Simple Gauge[GitHub Actions status | HaneetGH/apple-watch-gauge-android](https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
+# Android Simple Gauge![GitHub Actions status | HaneetGH/apple-watch-gauge-android](https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
 
 
 # NOTE:- This isn't a Library
