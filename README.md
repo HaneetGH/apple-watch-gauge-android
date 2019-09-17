@@ -1,4 +1,5 @@
-# Android Simple Gauge Library![GitHub Actions status | HaneetGH/SceneForm](https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
+# Android Simple Gauge Library![GitHub Actions status | HaneetGH/SceneForm]
+(https://github.com/HaneetGH/apple-watch-gauge-android/workflows/Android%20CI/badge.svg)
 
 Apple Watch alike gauge for android
 
